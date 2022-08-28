@@ -6,4 +6,4 @@ dir="$1"
 pfx="$2"
 chk="$1/$2_check.log"
 
-grep 'All tests passed' "${chk}"
+grep -q 'in business' "${chk}"
