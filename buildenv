@@ -42,7 +42,9 @@ export ZOPEN_TYPE="TARBALL"
 #  - git: required by build.sh to be able to apply patches
 # Many packages will require basic tools like m4, make.
 #
-export ZOPEN_TARBALL_URL="https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz"
+BZIP2_VERSION="bzip2-1.0.8"
+
+export ZOPEN_TARBALL_URL="https://sourceware.org/pub/bzip2/${BZIP2_VERSION}.tar.gz"
 export ZOPEN_TARBALL_DEPS="curl gzip make"
 
 export LDFLAGS="-Wl,edit=no"
@@ -51,5 +53,5 @@ export BIGFILES="-D_FILE_OFFSET_BITS=64"
 export CFLAGS="-O2 -qascii -q64 -std=gnu11 $(CPPFLAGS) $(BIGFILES) -D_XOPEN_SOURCE_EXTENDED=1"
 export CC=xlclang
 
-export ZOPEN_INSTALL_OPTS="install PREFIX=local"
+export ZOPEN_INSTALL_OPTS="install PREFIX=$HOME/zopen/prod/${BZIP2_VERSION}"
 
