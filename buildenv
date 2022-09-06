@@ -42,3 +42,16 @@ export CC=xlclang
 
 export ZOPEN_INSTALL_OPTS="install PREFIX=$HOME/zopen/prod/${BZIP2_VERSION}"
 
+
+zopen_check_results()
+{
+#
+# Really simple check - make sure output log has the right line
+#
+dir="$1"
+pfx="$2"
+chk="$1/$2_check.log"
+
+grep -q 'in business' "${chk}"
+}
+
