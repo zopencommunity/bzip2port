@@ -40,7 +40,7 @@ export BIGFILES="-D_FILE_OFFSET_BITS=64"
 export CFLAGS="-O2 -qascii -q64 -std=gnu11 $(CPPFLAGS) $(BIGFILES) -D_XOPEN_SOURCE_EXTENDED=1"
 export CC=xlclang
 
-export ZOPEN_INSTALL_OPTS="install PREFIX=$HOME/zopen/prod/${BZIP2_VERSION}"
+export ZOPEN_INSTALL_OPTS="install PREFIX=\$ZOPEN_INSTALL_DIR"
 
 
 zopen_check_results()
