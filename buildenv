@@ -36,9 +36,7 @@ export ZOPEN_TARBALL_DEPS="curl gzip make"
 
 export LDFLAGS="-Wl,edit=no"
 export BIGFILES="-D_FILE_OFFSET_BITS=64"
-# export CPPFLAGS="-DNSIG=9 -D_XOPEN_SOURCE=600 -D_ALL_SOURCE -D_OPEN_SYS_FILE_EXT=1 -D_AE_BIMODAL=1 -D_ENHANCED_ASCII_EXT=0xFFFFFFFF"
-export CFLAGS="-O2 -qascii -q64 -std=gnu11 $(CPPFLAGS) $(BIGFILES) -D_XOPEN_SOURCE_EXTENDED=1"
-export CC=xlclang
+export ZOPEN_EXTRA_CFLAGS="${BIGFILES} -D_XOPEN_SOURCE_EXTENDED=1"
 
 export ZOPEN_INSTALL_OPTS="install PREFIX=\$ZOPEN_INSTALL_DIR"
 
@@ -52,6 +50,15 @@ dir="$1"
 pfx="$2"
 chk="$1/$2_check.log"
 
-grep -q 'in business' "${chk}"
+totalTests=$(grep "Doing.*tests" ${chk} | cut -f2 -d ' ' | tr -d ' ')
+if grep -q 'in business' "${chk}"; then
+  cat <<ZZ
+actualFailures:0
+totalTests:$totalTests
+expectedFailures:0
+ZZ
+else
+  #TODO: handle failure case
+fi
 }
 
