@@ -62,3 +62,19 @@ else
 fi
 }
 
+zopen_post_install()
+{
+  rootDir=$1
+  find $rootDir -type l |
+  while read l ; do
+    echo "Processing $l if in $rootDir"
+    targetLink=$(ls -l $l | awk '{ print $11 }')
+    relativeTargetLink=$(echo $targetLink | sed -e "s#$rootDir##");
+    if [ "$targetLink" != "$relativeTargetLink" ]; then
+      echo "Fixing abs symlink to relative..."
+      linkDir=$(dirname $l);
+      relativeTargetLink=$(echo $targetLink | sed -e "s#$linkDir/##");
+      ln -s -f $relativeTargetLink $l
+    fi
+  done
+}
