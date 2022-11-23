@@ -1,0 +1,25 @@
+diff --git a/Makefile b/Makefile
+index f8a1772..79ed510 100644
+--- a/Makefile
++++ b/Makefile
+@@ -19,6 +19,7 @@ CC=gcc
+ AR=ar
+ RANLIB=ranlib
+ LDFLAGS=
++LIBS=
+ 
+ BIGFILES=-D_FILE_OFFSET_BITS=64
+ CFLAGS=-Wall -Winline -O2 -g $(BIGFILES)
+@@ -38,10 +39,10 @@ OBJS= blocksort.o  \
+ all: libbz2.a bzip2 bzip2recover test
+ 
+ bzip2: libbz2.a bzip2.o
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o bzip2 bzip2.o -L. -lbz2
++	$(CC) $(CFLAGS) $(LDFLAGS) -o bzip2 bzip2.o -L. -lbz2 ${LIBS}
+ 
+ bzip2recover: bzip2recover.o
+-	$(CC) $(CFLAGS) $(LDFLAGS) -o bzip2recover bzip2recover.o
++	$(CC) $(CFLAGS) $(LDFLAGS) -o bzip2recover bzip2recover.o ${LIBS}
+ 
+ libbz2.a: $(OBJS)
+ 	rm -f libbz2.a
