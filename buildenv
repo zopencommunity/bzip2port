@@ -47,3 +47,8 @@ zopen_post_install()
     fi
   done
 }
+
+zopen_get_version()
+{
+  ./bzip2 -V < /dev/null 2>&1 | head -1 | awk '{ print $7 }' | awk -F',' '{ print $1 }'
+}
