@@ -6,10 +6,10 @@ node('linux')
                         branches: [[name: '*/main']],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [],
-                        userRemoteConfigs: [[url: 'https://github.com/ZOSOpenTools/bzip2port.git']]])
+                        userRemoteConfigs: [[url: 'https://github.com/zopencommunity/bzip2port.git']]])
         }
 
         stage('Build') {
-                build job: 'Port-Pipeline', parameters: [string(name: 'PORT_GITHUB_REPO', value: 'https://github.com/ZOSOpenTools/bzip2port.git'), string(name: 'PORT_DESCRIPTION', value: 'The bzip2 compression program.' )]
+                build job: 'Port-Pipeline', parameters: [string(name: 'PORT_GITHUB_REPO', value: 'https://github.com/zopencommunity/bzip2port.git'), string(name: 'PORT_DESCRIPTION', value: 'The bzip2 compression program.' )]
         }
 }
