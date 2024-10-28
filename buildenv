@@ -2,6 +2,7 @@
 BZIP2_VERSION="1.0.8"
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_CONFIGURE="skip"
+export ZOPEN_CATEGORIES="compression"
 export ZOPEN_STABLE_URL="https://sourceware.org/pub/bzip2/bzip2-${BZIP2_VERSION}.tar.gz"
 export ZOPEN_STABLE_DEPS="tar curl gzip make zoslib"
 
